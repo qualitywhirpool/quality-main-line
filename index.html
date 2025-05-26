@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QC Mobile App - Design Moderno</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Custom Styles & Gradient Theme */
+        body {
+            font-family: 'Inter', sans-serif; /* Tailwind usa Inter por padrão, mas é bom especificar */
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Gradiente roxo-azulado para o corpo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 1rem; /* Adiciona padding para evitar que o app toque as bordas em telas pequenas */
+        }
+        .app-container {
+            max-width: 420px; /* Um pouco mais de largura */
+            width: 100%; /* Responsivo */
+            margin: 1rem auto;
+            background-color: rgba(255, 255, 255, 0.95); /* Fundo branco levemente translúcido */
+            backdrop-filter: blur(10px); /* Efeito de vidro fosco (se o fundo for uma imagem ou gradiente complexo) */
+            border-radius: 1.5rem; /* Cantos bem arredondados */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 15px 15px rgba(0,0,0,0.1); /* Sombra mais pronunciada e suave */
+            padding: 2rem; /* Mais padding interno */
+            overflow: hidden;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            padding-bottom: 1.5rem; /* Mais espaço abaixo do header */
+            margin-bottom: 1.5rem; /* Espaço antes do primeiro botão */
+            border-bottom: 1px solid rgba(0,0,0,0.1); /* Linha divisória sutil */
+        }
+        .header-logo {
+            width: 50px; /* Tamanho da logo */
+            height: 50px;
+            border-radius: 0.75rem; /* Cantos arredondados para a logo */
+            object-fit: cover; /* Garante que a imagem da logo cubra o espaço */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .header-title {
+            font-size: 1.5rem; /* Título maior */
+            font-weight: 700; /* Mais peso na fonte */
+            color: #333; /* Cor escura para o título */
+            margin-left: 1rem;
+        }
+        .accordion-button {
+            background: linear-gradient(to right, #8e44ad, #9b59b6); /* Gradiente roxo para botões principais */
+            color: #ffffff;
+            border: none;
+            transition: all 0.3s ease;
+            padding: 1rem 1.25rem; /* Mais padding */
+            font-size: 1.1rem; /* Fonte maior */
+            font-weight: 500;
+            border-radius: 0.75rem; /* Cantos arredondados */
+            text-align: left;
+            width: 100%;
+            margin-bottom: 1rem; /* Mais espaço entre botões */
+            box-shadow: 0 5px 15px rgba(142, 68, 173, 0.3); /* Sombra correspondente ao gradiente */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-button:hover {
+            transform: translateY(-2px); /* Efeito de levantar ao passar o mouse */
+            box-shadow: 0 8px 20px rgba(142, 68, 173, 0.4);
+            background: linear-gradient(to right, #80399c, #8c4da9); /* Gradiente mais escuro no hover */
+        }
+        .accordion-content {
+            padding-left: 0.5rem; /* Menos indentação, os botões internos terão seu próprio padding */
+            padding-right: 0.5rem;
+            overflow: hidden;
+            max-height: 0;
+            transition: max-height 0.4s ease-out, padding-top 0.4s ease-out, padding-bottom 0.4s ease-out; /* Transição suave */
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        .accordion-content.open {
+            padding-top: 0.5rem; /* Espaçamento quando aberto */
+            padding-bottom: 0.5rem; /* Espaçamento quando aberto */
+        }
+        .btn-custom { /* Estilo para sub-botões */
+            background-color: #f4f6f8; /* Cor de fundo clara e suave */
+            color: #555; /* Cor de texto escura */
+            border: 1px solid #e0e0e0; /* Borda sutil */
+            transition: all 0.3s ease;
+            padding: 0.875rem 1rem; /* Padding ajustado */
+            font-size: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 0.75rem;
+            display: block;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .btn-custom:hover {
+            background-color: #e9ecef;
+            border-color: #d1d5db;
+            transform: scale(1.02); /* Leve zoom no hover */
+        }
+        .btn-custom:last-child {
+            margin-bottom: 0; /* Remove margem do último sub-botão */
+        }
+        .icon-transition {
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Transição mais elástica */
+            font-size: 1.1rem; /* Tamanho do ícone */
+        }
+        .rotate-90 {
+            transform: rotate(90deg);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="header">
+            <img src="https://lh3.googleusercontent.com/sKGIRIWaZmKJv-7VMzZo3MoCjvrHHj9LYoBk4a_o5kXXRs1IV7kgV55fIk7CGC14z62-MurJQw6NtAKrtqgLc4q1C_r1n95DG6tl9-qx1lnqQQ6UYSunsyUx8o9KOc7FjA=w1280"
+                 alt="Logo QC"
+                 class="header-logo"
+                 onerror="this.onerror=null; this.src='https://placehold.co/60x60/E74C3C/FFFFFF?text=QC&font=roboto';">
+            <span class="header-title">Quality Main Line</span>
+        </header>
+
+        <main>
+            <div>
+                <button type="button" class="accordion-button" data-target="pokaYokeContent">
+                    <span>Poka-Yoke</span>
+                    <i class="fas fa-chevron-right icon-transition"></i>
+                </button>
+                <div id="pokaYokeContent" class="accordion-content">
+                    <button class="btn-custom">Produto</button>
+                    <button class="btn-custom">Processo</button>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" class="accordion-button" data-target="errorProofingContent">
+                    <span>Error Proofing</span>
+                    <i class="fas fa-chevron-right icon-transition"></i>
+                </button>
+                <div id="errorProofingContent" class="accordion-content">
+                    <button class="btn-custom">Planta</button>
+                    <button class="btn-custom">Estação</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const accordionButtons = document.querySelectorAll('.accordion-button');
+
+            accordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+                    const content = document.getElementById(targetId);
+                    const icon = button.querySelector('i.fas');
+
+                    // Fecha outros acordeões abertos (opcional)
+                    // accordionButtons.forEach(otherButton => {
+                    //     if (otherButton !== button) {
+                    //         const otherTargetId = otherButton.dataset.target;
+                    //         const otherContent = document.getElementById(otherTargetId);
+                    //         const otherIcon = otherButton.querySelector('i.fas');
+                    //         if (otherContent && otherContent.classList.contains('open')) {
+                    //             otherContent.classList.remove('open');
+                    //             otherContent.style.maxHeight = null;
+                    //             otherContent.style.paddingTop = null;
+                    //             otherContent.style.paddingBottom = null;
+                    //             if (otherIcon) otherIcon.classList.remove('rotate-90');
+                    //         }
+                    //     }
+                    // });
+
+                    if (content) {
+                        content.classList.toggle('open');
+                        if (content.classList.contains('open')) {
+                            content.style.maxHeight = content.scrollHeight + "px";
+                            // Adiciona padding gradualmente para uma transição mais suave
+                            setTimeout(() => {
+                                if (content.classList.contains('open')) { // Verifica novamente caso o usuário clique rápido
+                                    content.style.paddingTop = "0.5rem";
+                                    content.style.paddingBottom = "0.5rem";
+                                }
+                            }, 50); // Pequeno delay para sincronizar com max-height
+                            if (icon) icon.classList.add('rotate-90');
+                        } else {
+                            content.style.maxHeight = null;
+                            content.style.paddingTop = null;
+                            content.style.paddingBottom = null;
+                            if (icon) icon.classList.remove('rotate-90');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
