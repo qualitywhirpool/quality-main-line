@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QC Mobile App - Design Moderno</title>
+    <title>QML</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(135deg, #073763 0%, #0363bd 100%);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -18,37 +20,38 @@
         }
         .app-container {
             max-width: 420px;
-            width: 100%; /* Responsivo */
+            width: 100%;
             margin: 1rem auto;
             background-color: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
             border-radius: 1.5rem;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 15px 15px rgba(0,0,0,0.1);
-            padding: 2rem; /* Padding interno */
+            padding: 2rem;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
         .header {
             display: flex;
             align-items: center;
             padding-bottom: 1.5rem;
             margin-bottom: 1.5rem;
-            border-bottom: 1px solid rgba(0,0,0,0.1); /* Linha divisória sutil */
+            border-bottom: 1px solid rgba(0,0,0,0.1);
         }
         .header-logo {
-            width: 50px; /* Logo QC */
+            width: 50px;
             height: 50px;
             border-radius: 0.75rem;
             object-fit: cover;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
         .header-title {
             font-size: 1.5rem;
-            font-weight: 700; 
+            font-weight: 700;
             color: #333;
             margin-left: 1rem;
         }
         .accordion-button {
-            background: linear-gradient(to right, #073763, #0157a7); /* Gradiente roxo para botões principais */
+            background: linear-gradient(to right, #073763, #0157a7);
             color: #ffffff;
             border: none;
             transition: all 0.3s ease;
@@ -63,6 +66,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            cursor: pointer;
         }
         .accordion-button:hover {
             transform: translateY(-2px);
@@ -87,14 +91,15 @@
             color: #555;
             border: 1px solid #e0e0e0;
             transition: all 0.3s ease;
-            padding: 0.875rem 1rem;
-            font-size: 1rem;
+            padding: 0.875rem 1rem; /* 14px vertical, 16px horizontal */
+            font-size: 1rem; /* 16px */
             border-radius: 0.5rem;
             text-align: center;
             width: 100%;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             display: block;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            cursor: pointer;
         }
         .btn-custom:hover {
             background-color: #e9ecef;
@@ -102,14 +107,26 @@
             transform: scale(1.02);
         }
         .btn-custom:last-child {
-            margin-bottom: 1;
+            margin-bottom: 1rem;
         }
         .icon-transition {
             transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            font-size: 1.1rem; /* Tamanho do ícone */
+            font-size: 1.1rem;
         }
         .rotate-90 {
             transform: rotate(90deg);
+        }
+        main {
+            flex-grow: 1;
+            width: 100%;
+        }
+        .footer {
+            text-align: center;
+            padding-top: 1.5rem;
+            margin-top: auto;
+            font-size: 0.875rem;
+            color: #666;
+            border-top: 1px solid rgba(0,0,0,0.05);
         }
     </style>
 </head>
@@ -120,7 +137,7 @@
             <img src="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/QC%20Gear.png"
                  alt="Logo QC"
                  class="header-logo"
-                 onerror="this.onerror=null; this.src='https://placehold.co/60x60/E74C3C/FFFFFF?text=QC&font=roboto';">
+                 onerror="this.onerror=null; this.src='https://placehold.co/50x50/073763/FFFFFF?text=QC&font=inter';">
             <span class="header-title">Quality Main Line</span>
         </header>
 
@@ -131,8 +148,8 @@
                     <i class="fas fa-chevron-right icon-transition"></i>
                 </button>
                 <div id="pokaYokeContent" class="accordion-content">
-                    <button class="btn-custom">Produto</button>
-                    <button class="btn-custom">Processo</button>
+                    <button type="button" class="btn-custom">Produto</button>
+                    <button type="button" class="btn-custom">Processo</button>
                 </div>
             </div>
 
@@ -142,11 +159,27 @@
                     <i class="fas fa-chevron-right icon-transition"></i>
                 </button>
                 <div id="errorProofingContent" class="accordion-content">
-                    <button class="btn-custom">Planta</button>
-                    <button class="btn-custom">Estação</button>
+                    <button type="button" class="btn-custom">Planta</button>
+                    <button type="button" class="btn-custom">Estação</button>
                 </div>
             </div>
-        </main>
+
+            <div>
+                <button type="button" class="accordion-button" data-target="processFailuresContent">
+                    <span>Falhas de Processo</span>
+                    <i class="fas fa-chevron-right icon-transition"></i>
+                </button>
+                <div id="processFailuresContent" class="accordion-content">
+                    <button type="button" class="btn-custom">Man</button>
+                    <button type="button" class="btn-custom">Method</button>
+                    <button type="button" class="btn-custom">Material</button>
+                </div>
+            </div>
+            </main>
+
+        <footer class="footer">
+            <p>Desenvolvido por Higor Brito. All rights reserved.</p>
+        </footer>
     </div>
 
     <script>
@@ -158,23 +191,28 @@
                     const targetId = button.dataset.target;
                     const content = document.getElementById(targetId);
                     const icon = button.querySelector('i.fas');
-                    
+                    accordionButtons.forEach(otherButton => {
+                        if (otherButton !== button) {
+                            const otherContentId = otherButton.dataset.target;
+                            const otherContent = document.getElementById(otherContentId);
+                            const otherIcon = otherButton.querySelector('i.fas');
+                            if (otherContent && otherContent.classList.contains('open')) {
+                                otherContent.classList.remove('open');
+                                otherContent.style.maxHeight = null;
+                                if (otherIcon) otherIcon.classList.remove('rotate-90');
+                            }
+                        }
+                    });
+
+                    // Toggle current accordion
                     if (content) {
-                        content.classList.toggle('open');
+                        content.classList.toggle('open'); 
+
                         if (content.classList.contains('open')) {
-                            content.style.maxHeight = content.scrollHeight + "px";
-                            // transição mais suave
-                            setTimeout(() => {
-                                if (content.classList.contains('open')) { // Verifica novamente caso o usuário clique rápido
-                                    content.style.paddingTop = "0.5rem";
-                                    content.style.paddingBottom = "0.5rem";
-                                }
-                            }, 50); // Pequeno delay para sincronizar
+                            content.style.maxHeight = content.scrollHeight + "px"; 
                             if (icon) icon.classList.add('rotate-90');
                         } else {
                             content.style.maxHeight = null;
-                            content.style.paddingTop = null;
-                            content.style.paddingBottom = null;
                             if (icon) icon.classList.remove('rotate-90');
                         }
                     }
