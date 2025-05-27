@@ -91,8 +91,8 @@
             color: #555;
             border: 1px solid #e0e0e0;
             transition: all 0.3s ease;
-            padding: 0.875rem 1rem; /* 14px vertical, 16px horizontal */
-            font-size: 1rem; /* 16px */
+            padding: 0.875rem 1rem;
+            font-size: 1rem;
             border-radius: 0.5rem;
             text-align: center;
             width: 100%;
@@ -100,11 +100,13 @@
             display: block;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             cursor: pointer;
+            text-decoration: none; /* Adicionado para remover sublinhado de link */
         }
         .btn-custom:hover {
             background-color: #e9ecef;
             border-color: #d1d5db;
             transform: scale(1.02);
+            color: #333; /* Adicionado para manter consistência no hover */
         }
         .btn-custom:last-child {
             margin-bottom: 1rem;
@@ -148,8 +150,8 @@
                     <i class="fas fa-chevron-right icon-transition"></i>
                 </button>
                 <div id="pokaYokeContent" class="accordion-content">
-                    <button type="button" class="btn-custom">Produto</button>
-                    <button type="button" class="btn-custom">Processo</button>
+                    <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Produto</a>
+                    <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Processo</a>
                 </div>
             </div>
 
@@ -159,8 +161,8 @@
                     <i class="fas fa-chevron-right icon-transition"></i>
                 </button>
                 <div id="errorProofingContent" class="accordion-content">
-                    <button type="button" class="btn-custom">Planta</button>
-                    <button type="button" class="btn-custom">Estação</button>
+                    <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
+                    <a href="https://github.com/higorbritowh/qml/blob/main/Controle%20de%20Error%20Proofing%20-%20P155%20Sistema%20de%20vis%C3%A3o-Bulbo_Termistor%20-%20Ciclope%20-%20Rac%20L1.jpg?raw=true" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
                 </div>
             </div>
 
@@ -170,9 +172,9 @@
                     <i class="fas fa-chevron-right icon-transition"></i>
                 </button>
                 <div id="processFailuresContent" class="accordion-content">
-                    <button type="button" class="btn-custom">Man</button>
-                    <button type="button" class="btn-custom">Method</button>
-                    <button type="button" class="btn-custom">Material</button>
+                    <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Man</a>
+                    <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Method</a>
+                    <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Material</a>
                 </div>
             </div>
             </main>
@@ -191,6 +193,12 @@
                     const targetId = button.dataset.target;
                     const content = document.getElementById(targetId);
                     const icon = button.querySelector('i.fas');
+                    
+                    let isOpeningCurrent = false;
+                    if (content && !content.classList.contains('open')) {
+                        isOpeningCurrent = true;
+                    }
+
                     accordionButtons.forEach(otherButton => {
                         if (otherButton !== button) {
                             const otherContentId = otherButton.dataset.target;
@@ -204,7 +212,6 @@
                         }
                     });
 
-                    // Toggle current accordion
                     if (content) {
                         content.classList.toggle('open'); 
 
@@ -215,6 +222,23 @@
                             content.style.maxHeight = null;
                             if (icon) icon.classList.remove('rotate-90');
                         }
+                    }
+                });
+            });
+
+            const linkButtons = document.querySelectorAll('.btn-custom');
+            linkButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const url = button.getAttribute('href');
+                    if (url && url !== "#") {
+                        // A ação padrão de abrir o link já ocorrerá
+                        // Se precisar de lógica adicional antes de redirecionar, adicione aqui.
+                        // event.preventDefault(); // Descomente se precisar impedir o redirecionamento imediato
+                        // window.open(url, '_blank'); // Exemplo de abrir em nova aba
+                    } else if (url === "#") {
+                        event.preventDefault(); 
+                        console.warn('Link não definido para o botão:', button.textContent.trim());
+                        // Poderia adicionar um feedback visual para o usuário aqui
                     }
                 });
             });
