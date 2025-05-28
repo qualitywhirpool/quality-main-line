@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QML</title>
+    <title>QML - Quality Main Line</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -18,74 +18,114 @@
             min-height: 100vh;
             padding: 1rem;
         }
+
         .app-container {
-            max-width: 420px;
+            max-width: 480px;
             width: 100%;
             margin: 1rem auto;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(12px);
             border-radius: 1.5rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 15px 15px rgba(0,0,0,0.1);
-            padding: 2rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0,0,0,0.15);
+            padding: 2.5rem;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            gap: 1.5rem;
         }
+
         .header {
             display: flex;
             align-items: center;
             padding-bottom: 1.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             border-bottom: 1px solid rgba(0,0,0,0.1);
+            gap: 1rem;
         }
+
         .header-logo {
-            width: 50px;
-            height: 50px;
-            border-radius: 0.75rem;
+            width: 60px;
+            height: 60px;
+            border-radius: 0.9rem;
             object-fit: cover;
         }
+
         .header-title {
-            font-size: 1rem;
+            font-size: 1.3rem;
             font-weight: 700;
-            color: #333;
-            margin-left: 2.5rem;
+            color: #222;
         }
-        .accordion-button {
-            background: linear-gradient(to right, #073763, #0157a7);
-            color: #ffffff;
+
+        .accordion-button, .accordion-button-sub {
             border: none;
             transition: all 0.3s ease;
-            padding: 1rem 1.25rem;
-            font-size: 1.1rem;
             font-weight: 500;
             border-radius: 0.75rem;
             text-align: left;
             width: 100%;
-            margin-bottom: 1rem;
-            box-shadow: 0 5px 15px rgba(68, 84, 173, 0.3);
+            margin-bottom: 0.75rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(68, 84, 173, 0.3);
         }
+
+        .accordion-button {
+            background: linear-gradient(to right, #073763, #0157a7);
+            color: #ffffff;
+            padding: 1.1rem 1.5rem;
+            font-size: 1.15rem;
+            margin-top: 0.5rem;
+        }
+
         .accordion-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(68, 78, 173, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(68, 78, 173, 0.5);
             background: linear-gradient(to right, #0c579c, #1080e8);
         }
-        .accordion-content {
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
+
+        .accordion-button-sub {
+            background-color: #e0e7ff;
+            color: #3b82f6;
+            padding: 0.9rem 1.25rem;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .accordion-button-sub:hover {
+            background-color: #c7d2fe;
+            transform: translateY(-1px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .accordion-content, .accordion-content-sub {
             overflow: hidden;
             max-height: 0;
             transition: max-height 0.4s ease-out, padding-top 0.4s ease-out, padding-bottom 0.4s ease-out;
             padding-top: 0;
             padding-bottom: 0;
+            margin-bottom: 0.5rem;
         }
-        .accordion-content.open {
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
+
+        .accordion-content {
+            padding-left: 1rem;
+            padding-right: 0.5rem;
         }
+
+        .accordion-content-sub {
+            padding-left: 1.5rem;
+            padding-right: 0.5rem;
+        }
+
+        .accordion-content.open, .accordion-content-sub.open {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+        }
+
         .btn-custom {
             background-color: #f4f6f8;
             color: #555;
@@ -100,35 +140,89 @@
             display: block;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             cursor: pointer;
-            text-decoration: none; /* Adicionado para remover sublinhado de link */
+            text-decoration: none;
         }
+
         .btn-custom:hover {
             background-color: #e9ecef;
             border-color: #d1d5db;
-            transform: scale(1.02);
-            color: #333; /* Adicionado para manter consistência no hover */
+            transform: scale(1.01);
+            color: #333;
         }
+
         .btn-custom:last-child {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
+
         .icon-transition {
             transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            font-size: 1.1rem;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
         }
+        .accordion-button-sub .icon-transition {
+            color: #3b82f6;
+        }
+
         .rotate-90 {
             transform: rotate(90deg);
         }
+
         main {
             flex-grow: 1;
             width: 100%;
         }
+
         .footer {
             text-align: center;
             padding-top: 1.5rem;
             margin-top: auto;
             font-size: 0.875rem;
-            color: #666;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            color: #777;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+
+        /* Estilos do Overlay de Carregamento */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95); /* Fundo branco semi-transparente */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .loading-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        /* Animação de pulsação para a logo de carregamento */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
         }
     </style>
 </head>
@@ -139,67 +233,209 @@
             <img src="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/QC%20Gear.png"
                  alt="Logo QC"
                  class="header-logo"
-                 onerror="this.onerror=null; this.src='https://placehold.co/50x50/073763/FFFFFF?text=QC&font=inter';">
+                 onerror="this.onerror=null; this.src='https://placehold.co/60x60/073763/FFFFFF?text=QC&font=inter';">
             <span class="header-title">Quality Main Line</span>
         </header>
 
         <main>
             <div>
-                <button type="button" class="accordion-button" data-target="pokaYokeContent">
-                    <span>Poka-Yoke</span>
+                <button type="button" class="accordion-button" data-target="pt10Content">
+                    <span>P.T10</span>
                     <i class="fas fa-chevron-right icon-transition"></i>
                 </button>
-                <div id="pokaYokeContent" class="accordion-content">
-                    <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Produto</a>
-                    <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Processo</a>
+                <div id="pt10Content" class="accordion-content">
+                    <div>
+                        <button type="button" class="accordion-button-sub" data-target="pt10PokaYokeContent">
+                            <span>Poka-Yoke</span>
+                            <i class="fas fa-chevron-right icon-transition"></i>
+                        </button>
+                        <div id="pt10PokaYokeContent" class="accordion-content-sub">
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Produto</a>
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Processo</a>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="accordion-button-sub" data-target="pt10ErrorProofingContent">
+                            <span>Error Proofing</span>
+                            <i class="fas fa-chevron-right icon-transition"></i>
+                        </button>
+                        <div id="pt10ErrorProofingContent" class="accordion-content-sub">
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
+                            <a href="https://github.com/higorbritowh/qml/blob/main/Controle%20de%20Error%20Proofing%20-%20P155%20Sistema%20de%20vis%C3%A3o-Bulbo_Termistor%20-%20Ciclope%20-%20Rac%20L1.jpg?raw=true" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div>
-                <button type="button" class="accordion-button" data-target="errorProofingContent">
-                    <span>Error Proofing</span>
+                <button type="button" class="accordion-button" data-target="pt40Content">
+                    <span>P.40</span>
                     <i class="fas fa-chevron-right icon-transition"></i>
                 </button>
-                <div id="errorProofingContent" class="accordion-content">
-                    <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
-                    <a href="https://github.com/higorbritowh/qml/blob/main/Controle%20de%20Error%20Proofing%20-%20P155%20Sistema%20de%20vis%C3%A3o-Bulbo_Termistor%20-%20Ciclope%20-%20Rac%20L1.jpg?raw=true" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                <div id="pt40Content" class="accordion-content">
+                    <div>
+                        <button type="button" class="accordion-button-sub" data-target="pt40PokaYokeContent">
+                            <span>Poka-Yoke</span>
+                            <i class="fas fa-chevron-right icon-transition"></i>
+                        </button>
+                        <div id="pt40PokaYokeContent" class="accordion-content-sub">
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Produto</a>
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Processo</a>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="accordion-button-sub" data-target="pt40ErrorProofingContent">
+                            <span>Error Proofing</span>
+                            <i class="fas fa-chevron-right icon-transition"></i>
+                        </button>
+                        <div id="pt40ErrorProofingContent" class="accordion-content-sub">
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
+                            <a href="https://github.com/higorbritowh/qml/blob/main/Controle%20de%20Error%20Proofing%20-%20P155%20Sistema%20de%20vis%C3%A3o-Bulbo_Termistor%20-%20Ciclope%20-%20Rac%20L1.jpg?raw=true" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div>
-                <button type="button" class="accordion-button" data-target="processFailuresContent">
-                    <span>Falhas de Processo</span>
+                <button type="button" class="accordion-button" data-target="pt05Content">
+                    <span>P.T05</span>
                     <i class="fas fa-chevron-right icon-transition"></i>
                 </button>
-                <div id="processFailuresContent" class="accordion-content">
-                    <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Man</a>
-                    <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Method</a>
-                    <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Material</a>
+                <div id="pt05Content" class="accordion-content">
+                    <div>
+                        <button type="button" class="accordion-button-sub" data-target="pt05PokaYokeContent">
+                            <span>Poka-Yoke</span>
+                            <i class="fas fa-chevron-right icon-transition"></i>
+                        </button>
+                        <div id="pt05PokaYokeContent" class="accordion-content-sub">
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Produto</a>
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Processo</a>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="accordion-button-sub" data-target="pt05ErrorProofingContent">
+                            <span>Error Proofing</span>
+                            <i class="fas fa-chevron-right icon-transition"></i>
+                        </button>
+                        <div id="pt05ErrorProofingContent" class="accordion-content-sub">
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
+                            <a href="https://github.com/higorbritowh/qml/blob/main/Controle%20de%20Error%20Proofing%20-%20P155%20Sistema%20de%20vis%C3%A3o-Bulbo_Termistor%20-%20Ciclope%20-%20Rac%20L1.jpg?raw=true" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </main>
+
+            <div>
+                <button type="button" class="accordion-button" data-target="pt150Content">
+                    <span>P.150</span>
+                    <i class="fas fa-chevron-right icon-transition"></i>
+                </button>
+                <div id="pt150Content" class="accordion-content">
+                    <div>
+                        <button type="button" class="accordion-button-sub" data-target="pt150PokaYokeContent">
+                            <span>Poka-Yoke</span>
+                            <i class="fas fa-chevron-right icon-transition"></i>
+                        </button>
+                        <div id="pt150PokaYokeContent" class="accordion-content-sub">
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Produto</a>
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Processo</a>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="accordion-button-sub" data-target="pt150ErrorProofingContent">
+                            <span>Error Proofing</span>
+                            <i class="fas fa-chevron-right icon-transition"></i>
+                        </button>
+                        <div id="pt150ErrorProofingContent" class="accordion-content-sub">
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
+                            <a href="https://github.com/higorbritowh/qml/blob/main/Controle%20de%20Error%20Proofing%20-%20P155%20Sistema%20de%20vis%C3%A3o-Bulbo_Termistor%20-%20Ciclope%20-%20Rac%20L1.jpg?raw=true" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" class="accordion-button" data-target="pt190Content">
+                    <span>P.190</span>
+                    <i class="fas fa-chevron-right icon-transition"></i>
+                </button>
+                <div id="pt190Content" class="accordion-content">
+                    <div>
+                        <button type="button" class="accordion-button-sub" data-target="pt190PokaYokeContent">
+                            <span>Poka-Yoke</span>
+                            <i class="fas fa-chevron-right icon-transition"></i>
+                        </button>
+                        <div id="pt190PokaYokeContent" class="accordion-content-sub">
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Produto</a>
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Processo</a>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="accordion-button-sub" data-target="pt190ErrorProofingContent">
+                            <span>Error Proofing</span>
+                            <i class="fas fa-chevron-right icon-transition"></i>
+                        </button>
+                        <div id="pt190ErrorProofingContent" class="accordion-content-sub">
+                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
+                            <a href="https://github.com/higorbritowh/qml/blob/main/Controle%20de%20Error%20Proofing%20-%20P155%20Sistema%20de%20vis%C3%A3o-Bulbo%20Termistor%20-%20Ciclope%20-%20Rac%20L1.jpg?raw=true" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
 
         <footer class="footer">
             <p>Desenvolvido por Higor Brito</p>
         </footer>
     </div>
 
+    <div id="loadingOverlay" class="loading-overlay">
+        <img src="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/QC%20Gear.png"
+             alt="Logo QC Carregando"
+             class="loading-logo"
+             onerror="this.onerror=null; this.src='https://placehold.co/120x120/073763/FFFFFF?text=QC&font=inter';">
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const accordionButtons = document.querySelectorAll('.accordion-button');
+            // Seleciona todos os botões principais dos acordeões
+            const mainAccordionButtons = document.querySelectorAll('.accordion-button');
+            // Seleciona todos os botões de sub-acordeões
+            const subAccordionButtons = document.querySelectorAll('.accordion-button-sub');
+            // Seleciona o overlay de carregamento
+            const loadingOverlay = document.getElementById('loadingOverlay');
 
-            accordionButtons.forEach(button => {
+            /**
+             * Alterna a visibilidade e o estado de um conteúdo de acordeão.
+             * Define uma altura máxima grande para garantir que todo o conteúdo seja visível.
+             * @param {HTMLElement} button - O botão que acionou o acordeão.
+             */
+            function toggleAccordion(button) {
+                const targetId = button.dataset.target;
+                const content = document.getElementById(targetId);
+                const icon = button.querySelector('i.fas');
+
+                if (content) {
+                    content.classList.toggle('open');
+
+                    if (content.classList.contains('open')) {
+                        content.style.maxHeight = '1000px'; // Valor suficientemente grande para exibir todo o conteúdo
+                        if (icon) icon.classList.add('rotate-90');
+                    } else {
+                        content.style.maxHeight = null; // Recolhe o conteúdo
+                        if (icon) icon.classList.remove('rotate-90');
+                    }
+                }
+            }
+
+            // Adiciona listeners de clique aos botões principais dos acordeões
+            mainAccordionButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const targetId = button.dataset.target;
                     const content = document.getElementById(targetId);
-                    const icon = button.querySelector('i.fas');
-                    
-                    let isOpeningCurrent = false;
-                    if (content && !content.classList.contains('open')) {
-                        isOpeningCurrent = true;
-                    }
 
-                    accordionButtons.forEach(otherButton => {
+                    // Fecha todos os outros acordeões principais se estiverem abertos
+                    mainAccordionButtons.forEach(otherButton => {
                         if (otherButton !== button) {
                             const otherContentId = otherButton.dataset.target;
                             const otherContent = document.getElementById(otherContentId);
@@ -212,33 +448,70 @@
                         }
                     });
 
-                    if (content) {
-                        content.classList.toggle('open'); 
+                    // Alterna o acordeão principal clicado
+                    toggleAccordion(button);
 
-                        if (content.classList.contains('open')) {
-                            content.style.maxHeight = content.scrollHeight + "px"; 
-                            if (icon) icon.classList.add('rotate-90');
-                        } else {
-                            content.style.maxHeight = null;
-                            if (icon) icon.classList.remove('rotate-90');
-                        }
+                    // Garante que todos os sub-acordeões dentro do acordeão principal aberto estejam fechados
+                    if (content && content.classList.contains('open')) {
+                        const subButtonsInMain = content.querySelectorAll('.accordion-button-sub');
+                        subButtonsInMain.forEach(subButton => {
+                            const subContentId = subButton.dataset.target;
+                            const subContent = document.getElementById(subContentId);
+                            const subIcon = subButton.querySelector('i.fas');
+                            if (subContent && subContent.classList.contains('open')) {
+                                subContent.classList.remove('open');
+                                subContent.style.maxHeight = null;
+                                if (subIcon) subIcon.classList.remove('rotate-90');
+                            }
+                        });
                     }
                 });
             });
 
+            // Adiciona listeners de clique aos botões de sub-acordeão
+            subAccordionButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Fecha outros sub-acordeões dentro do mesmo pai se estiverem abertos
+                    const parentContent = button.closest('.accordion-content');
+                    if (parentContent) {
+                        const otherSubButtons = parentContent.querySelectorAll('.accordion-button-sub');
+                        otherSubButtons.forEach(otherButton => {
+                            if (otherButton !== button) {
+                                const otherSubContentId = otherButton.dataset.target;
+                                const otherSubContent = document.getElementById(otherSubContentId);
+                                const otherSubIcon = otherButton.querySelector('i.fas');
+                                if (otherSubContent && otherSubContent.classList.contains('open')) {
+                                    otherSubContent.classList.remove('open');
+                                    otherSubContent.style.maxHeight = null;
+                                    if (otherSubIcon) otherSubIcon.classList.remove('rotate-90');
+                                }
+                            }
+                        });
+                    }
+                    
+                    // Alterna o sub-acordeão clicado
+                    toggleAccordion(button);
+                });
+            });
+
+            // Lida com botões de link personalizados (mostra overlay de carregamento antes de redirecionar)
             const linkButtons = document.querySelectorAll('.btn-custom');
             linkButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
                     const url = button.getAttribute('href');
                     if (url && url !== "#") {
-                        // A ação padrão de abrir o link já ocorrerá
-                        // Se precisar de lógica adicional antes de redirecionar, adicione aqui.
-                        // event.preventDefault(); // Descomente se precisar impedir o redirecionamento imediato
-                        // window.open(url, '_blank'); // Exemplo de abrir em nova aba
+                        event.preventDefault(); // Previne o comportamento padrão do link
+
+                        // Mostra o overlay de carregamento
+                        loadingOverlay.classList.add('visible');
+
+                        // Redireciona após 2 segundos (2000 ms)
+                        setTimeout(() => {
+                            window.location.href = url;
+                        }, 2000); // 2 segundos de atraso
                     } else if (url === "#") {
-                        event.preventDefault(); 
+                        event.preventDefault(); // Previne o comportamento padrão do link
                         console.warn('Link não definido para o botão:', button.textContent.trim());
-                        // Poderia adicionar um feedback visual para o usuário aqui
                     }
                 });
             });
