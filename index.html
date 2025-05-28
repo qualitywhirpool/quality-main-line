@@ -202,6 +202,12 @@
             opacity: 1;
             visibility: visible;
         }
+        /* Ensure overlay is hidden by default when page loads */
+        .loading-overlay:not(.visible) {
+            opacity: 0;
+            visibility: hidden;
+        }
+
 
         .loading-logo {
             width: 120px;
@@ -240,28 +246,17 @@
         <main>
             <div>
                 <button type="button" class="accordion-button" data-target="pt10Content">
-                    <span>P.T10</span>
+                    <span>PT.10</span>
                     <i class="fas fa-chevron-right icon-transition"></i>
                 </button>
                 <div id="pt10Content" class="accordion-content">
-                    <div>
-                        <button type="button" class="accordion-button-sub" data-target="pt10PokaYokeContent">
-                            <span>Poka-Yoke</span>
-                            <i class="fas fa-chevron-right icon-transition"></i>
-                        </button>
-                        <div id="pt10PokaYokeContent" class="accordion-content-sub">
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Produto</a>
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Processo</a>
-                        </div>
-                    </div>
                     <div>
                         <button type="button" class="accordion-button-sub" data-target="pt10ErrorProofingContent">
                             <span>Error Proofing</span>
                             <i class="fas fa-chevron-right icon-transition"></i>
                         </button>
                         <div id="pt10ErrorProofingContent" class="accordion-content-sub">
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
-                            <a href="https://github.com/higorbritowh/qml/blob/main/Controle%20de%20Error%20Proofing%20-%20P155%20Sistema%20de%20vis%C3%A3o-Bulbo_Termistor%20-%20Ciclope%20-%20Rac%20L1.jpg?raw=true" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                            <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20planta%20-%20PT.10.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
                         </div>
                     </div>
                 </div>
@@ -269,28 +264,17 @@
 
             <div>
                 <button type="button" class="accordion-button" data-target="pt40Content">
-                    <span>P.40</span>
+                    <span>PT.40</span>
                     <i class="fas fa-chevron-right icon-transition"></i>
                 </button>
                 <div id="pt40Content" class="accordion-content">
-                    <div>
-                        <button type="button" class="accordion-button-sub" data-target="pt40PokaYokeContent">
-                            <span>Poka-Yoke</span>
-                            <i class="fas fa-chevron-right icon-transition"></i>
-                        </button>
-                        <div id="pt40PokaYokeContent" class="accordion-content-sub">
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Produto</a>
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Processo</a>
-                        </div>
-                    </div>
                     <div>
                         <button type="button" class="accordion-button-sub" data-target="pt40ErrorProofingContent">
                             <span>Error Proofing</span>
                             <i class="fas fa-chevron-right icon-transition"></i>
                         </button>
                         <div id="pt40ErrorProofingContent" class="accordion-content-sub">
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
-                            <a href="https://github.com/higorbritowh/qml/blob/main/Controle%20de%20Error%20Proofing%20-%20P155%20Sistema%20de%20vis%C3%A3o-Bulbo_Termistor%20-%20Ciclope%20-%20Rac%20L1.jpg?raw=true" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                            <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20Esta%C3%A7%C3%A3o%20PT.40.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
                         </div>
                     </div>
                 </div>
@@ -298,28 +282,17 @@
 
             <div>
                 <button type="button" class="accordion-button" data-target="pt05Content">
-                    <span>P.T05</span>
+                    <span>PT.05</span>
                     <i class="fas fa-chevron-right icon-transition"></i>
                 </button>
                 <div id="pt05Content" class="accordion-content">
-                    <div>
-                        <button type="button" class="accordion-button-sub" data-target="pt05PokaYokeContent">
-                            <span>Poka-Yoke</span>
-                            <i class="fas fa-chevron-right icon-transition"></i>
-                        </button>
-                        <div id="pt05PokaYokeContent" class="accordion-content-sub">
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Produto</a>
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Processo</a>
-                        </div>
-                    </div>
                     <div>
                         <button type="button" class="accordion-button-sub" data-target="pt05ErrorProofingContent">
                             <span>Error Proofing</span>
                             <i class="fas fa-chevron-right icon-transition"></i>
                         </button>
                         <div id="pt05ErrorProofingContent" class="accordion-content-sub">
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
-                            <a href="https://github.com/higorbritowh/qml/blob/main/Controle%20de%20Error%20Proofing%20-%20P155%20Sistema%20de%20vis%C3%A3o-Bulbo_Termistor%20-%20Ciclope%20-%20Rac%20L1.jpg?raw=true" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                            <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20Plata%20-%20PT.05%20-%20Performance.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
                         </div>
                     </div>
                 </div>
@@ -348,7 +321,7 @@
                         </button>
                         <div id="pt150ErrorProofingContent" class="accordion-content-sub">
                             <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
-                            <a href="https://github.com/higorbritowh/qml/blob/main/Controle%20de%20Error%20Proofing%20-%20P155%20Sistema%20de%20vis%C3%A3o-Bulbo_Termistor%20-%20Ciclope%20-%20Rac%20L1.jpg?raw=true" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                            <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20proofing%20Esta%C3%A7%C3%A3o%20-%20P.150.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
                         </div>
                     </div>
                 </div>
@@ -377,7 +350,7 @@
                         </button>
                         <div id="pt190ErrorProofingContent" class="accordion-content-sub">
                             <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
-                            <a href="https://github.com/higorbritowh/qml/blob/main/Controle%20de%20Error%20Proofing%20-%20P155%20Sistema%20de%20vis%C3%A3o-Bulbo%20Termistor%20-%20Ciclope%20-%20Rac%20L1.jpg?raw=true" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                            <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20esta%C3%A7%C3%A3o%20P.190%20-%20Embalagem%20do%20Produto.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
                         </div>
                     </div>
                 </div>
@@ -506,6 +479,7 @@
                         loadingOverlay.classList.add('visible');
 
                         // Redireciona após 2 segundos (2000 ms)
+                        // A tela de carregamento permanecerá visível até que a nova página seja carregada ou o usuário retorne.
                         setTimeout(() => {
                             window.location.href = url;
                         }, 2000); // 2 segundos de atraso
@@ -514,6 +488,13 @@
                         console.warn('Link não definido para o botão:', button.textContent.trim());
                     }
                 });
+            });
+
+            // Oculta o overlay de carregamento quando a página é carregada ou quando o usuário retorna (do histórico)
+            window.addEventListener('pageshow', function (event) {
+                // Se a página foi carregada do cache de retrocesso/avanço (bfcache), o evento persisted é true.
+                // Em ambos os casos (carregamento inicial ou retorno), queremos esconder o overlay.
+                loadingOverlay.classList.remove('visible');
             });
         });
     </script>
