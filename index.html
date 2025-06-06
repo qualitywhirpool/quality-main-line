@@ -8,353 +8,311 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #0d6efd; 
+            --primary-hover: #0b5ed7;
+            --container-bg: #ffffff;
+            --text-primary: #212529;
+            --text-secondary: #6c757d;
+            --border-color: #e9ecef; /* Borda mais suave */
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+            --border-radius-md: 0.75rem;
+            --border-radius-lg: 1rem;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #073763 0%, #0363bd 100%);
+            background: linear-gradient(170deg, #f0f7ff 0%, #e6f0ff 100%);
+            margin: 0;
+            padding: 0;
+            height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            padding: 1rem;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .app-container {
             max-width: 480px;
             width: 100%;
-            margin: 1rem auto;
-            background-color: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(12px);
-            border-radius: 1.5rem;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25), 0 20px 20px rgba(0,0,0,0.15);
-            padding: 2.5rem;
-            overflow: hidden;
+            height: 100dvh; /* Altura dinâmica do viewport */
+            margin: 0 auto;
+            background-color: var(--container-bg);
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            overflow: hidden;
+        }
+
+        @media (min-width: 500px) {
+            body { padding: 1rem; }
+            .app-container {
+                border-radius: var(--border-radius-lg);
+                box-shadow: var(--shadow-lg);
+                height: 95dvh;
+                max-height: 880px;
+            }
         }
 
         .header {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            padding-bottom: 1.5rem;
-            margin-bottom: 1rem;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            gap: 1rem;
+            gap: 0.5rem;
+            padding: 1.25rem 2rem;
+            flex-shrink: 0;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 10;
         }
 
         .header-logo {
-            width: 60px;
-            height: 60px;
-            border-radius: 0.9rem;
+            width: 50px;
+            height: 50px;
+            border-radius: var(--border-radius-md);
             object-fit: cover;
         }
 
         .header-title {
-            font-size: 1.3rem;
+            font-size: 1.15rem;
             font-weight: 700;
-            color: #222;
+            color: var(--text-primary);
+        }
+        
+        main {
+            width: 100%;
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 1.5rem 2rem 1rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
 
-        .accordion-button, .accordion-button-sub {
-            border: none;
-            transition: all 0.3s ease;
+        .footer {
+            text-align: center;
+            padding: 1rem 2rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--container-bg);
+            flex-shrink: 0;
+        }
+
+        /* * ==============================================
+         * Componentes de Botão e Links
+         * ==============================================
+         */
+        .main-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 1.25rem;
+            font-size: 1.1rem;
             font-weight: 500;
-            border-radius: 0.75rem;
+            border-radius: var(--border-radius-md);
             text-align: left;
             width: 100%;
-            margin-bottom: 0.75rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(68, 84, 173, 0.3);
+            border: 1px solid transparent;
+            transition: all 0.25s ease-in-out;
+            box-shadow: var(--shadow-md);
         }
 
-        .accordion-button {
-            background: linear-gradient(to right, #073763, #0157a7);
-            color: #ffffff;
-            padding: 1.1rem 1.5rem;
-            font-size: 1.15rem;
-            margin-top: 0.5rem;
+        .main-button:hover {
+            transform: translateY(-2px) scale(1.01);
+            background-color: var(--primary-hover);
+            box-shadow: var(--shadow-lg);
         }
-
-        .accordion-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(68, 78, 173, 0.5);
-            background: linear-gradient(to right, #0c579c, #1080e8);
-        }
-
-        .accordion-button-sub {
-            background-color: #e0e7ff;
-            color: #3b82f6;
-            padding: 0.9rem 1.25rem;
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        }
-
-        .accordion-button-sub:hover {
-            background-color: #c7d2fe;
-            transform: translateY(-1px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-        }
-
-        .accordion-content, .accordion-content-sub {
-            overflow: hidden;
-            max-height: 0;
-            transition: max-height 0.4s ease-out, padding-top 0.4s ease-out, padding-bottom 0.4s ease-out;
-            padding-top: 0;
-            padding-bottom: 0;
-            margin-bottom: 0.5rem;
-        }
-
-        .accordion-content {
-            padding-left: 1rem;
-            padding-right: 0.5rem;
-        }
-
-        .accordion-content-sub {
-            padding-left: 1.5rem;
-            padding-right: 0.5rem;
-        }
-
-        .accordion-content.open, .accordion-content-sub.open {
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
-        }
-
+        
         .btn-custom {
-            background-color: #f4f6f8;
-            color: #555;
-            border: 1px solid #e0e0e0;
-            transition: all 0.3s ease;
-            padding: 0.875rem 1rem;
-            font-size: 1rem;
+            background-color: var(--container-bg);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease-in-out;
+            padding: 0.75rem 1rem;
+            font-size: 0.95rem;
             border-radius: 0.5rem;
             text-align: center;
             width: 100%;
             margin-bottom: 0.5rem;
             display: block;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            cursor: pointer;
             text-decoration: none;
         }
 
         .btn-custom:hover {
-            background-color: #e9ecef;
-            border-color: #d1d5db;
-            transform: scale(1.01);
-            color: #333;
+            background-color: #f8f9fa;
+            border-color: #ced4da;
+            color: var(--text-primary);
+            transform: translateY(-1px);
         }
 
-        .btn-custom:last-child {
-            margin-bottom: 0.5rem;
-        }
-
-        .icon-transition {
-            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        .accordion-button-sub .icon-transition {
-            color: #3b82f6;
-        }
-
-        .rotate-90 {
-            transform: rotate(90deg);
-        }
-
-        main {
-            flex-grow: 1;
+        /* * ==============================================
+         * Sistema de Modal
+         * ==============================================
+         */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
+            height: 100%;
+            background-color: rgba(33, 37, 41, 0.5); /* Fundo mais escuro */
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
         }
 
-        .footer {
-            text-align: center;
-            padding-top: 1.5rem;
-            margin-top: auto;
-            font-size: 0.875rem;
-            color: #777;
-            border-top: 1px solid rgba(0,0,0,0.08);
+        .modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
         }
 
-        /* Estilos do Overlay de Carregamento */
+        .modal {
+            background-color: var(--container-bg);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-lg);
+            max-width: 90%;
+            width: 450px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.95) translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease;
+        }
+        
+        .modal-overlay.visible .modal {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .modal-close-btn:hover {
+            color: var(--text-primary);
+            transform: scale(1.1);
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem; /* Espaçamento entre categorias */
+        }
+
+        .modal-category-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        /* * ==============================================
+         * Animações de Entrada
+         * ==============================================
+         */
+        @keyframes slide-up-fade-in {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        main > div {
+            animation: slide-up-fade-in 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        /* Efeito cascata na animação */
+        main > div:nth-child(1) { animation-delay: 0.1s; }
+        main > div:nth-child(2) { animation-delay: 0.2s; }
+        main > div:nth-child(3) { animation-delay: 0.3s; }
+        main > div:nth-child(4) { animation-delay: 0.4s; }
+        main > div:nth-child(5) { animation-delay: 0.5s; }
+
+        /* * ==============================================
+         * Overlay de Carregamento
+         * ==============================================
+         */
         .loading-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(255, 255, 255, 0.95); /* Fundo branco semi-transparente */
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(4px);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 9999;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
-
-        .loading-overlay.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-        /* Ensure overlay is hidden by default when page loads */
-        .loading-overlay:not(.visible) {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-
+        .loading-overlay.visible { opacity: 1; visibility: visible; }
         .loading-logo {
-            width: 120px;
-            height: 120px;
-            animation: pulse 2s infinite ease-in-out;
+            width: 100px;
+            height: 100px;
+            animation: pulse 1.8s infinite ease-in-out;
         }
-
-        /* Animação de pulsação para a logo de carregamento */
         @keyframes pulse {
-            0% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.1); opacity: 1; }
         }
     </style>
 </head>
 <body>
-
+    <!-- Container principal do App -->
     <div class="app-container">
         <header class="header">
             <img src="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/QC%20Gear.png"
                  alt="Logo QC"
                  class="header-logo"
-                 onerror="this.onerror=null; this.src='https://placehold.co/60x60/073763/FFFFFF?text=QC&font=inter';">
+                 onerror="this.onerror=null; this.src='https://placehold.co/50x50/0d6efd/FFFFFF?text=QC&font=inter';">
             <span class="header-title">Quality Main Line</span>
         </header>
 
         <main>
-            <div>
-                <button type="button" class="accordion-button" data-target="pt10Content">
-                    <span>PT.10</span>
-                    <i class="fas fa-chevron-right icon-transition"></i>
-                </button>
-                <div id="pt10Content" class="accordion-content">
-                    <div>
-                        <button type="button" class="accordion-button-sub" data-target="pt10ErrorProofingContent">
-                            <span>Error Proofing</span>
-                            <i class="fas fa-chevron-right icon-transition"></i>
-                        </button>
-                        <div id="pt10ErrorProofingContent" class="accordion-content-sub">
-                            <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20planta%20-%20PT.10.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <button type="button" class="accordion-button" data-target="pt40Content">
-                    <span>PT.40</span>
-                    <i class="fas fa-chevron-right icon-transition"></i>
-                </button>
-                <div id="pt40Content" class="accordion-content">
-                    <div>
-                        <button type="button" class="accordion-button-sub" data-target="pt40ErrorProofingContent">
-                            <span>Error Proofing</span>
-                            <i class="fas fa-chevron-right icon-transition"></i>
-                        </button>
-                        <div id="pt40ErrorProofingContent" class="accordion-content-sub">
-                            <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20Esta%C3%A7%C3%A3o%20PT.40.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <button type="button" class="accordion-button" data-target="pt05Content">
-                    <span>PT.05</span>
-                    <i class="fas fa-chevron-right icon-transition"></i>
-                </button>
-                <div id="pt05Content" class="accordion-content">
-                    <div>
-                        <button type="button" class="accordion-button-sub" data-target="pt05ErrorProofingContent">
-                            <span>Error Proofing</span>
-                            <i class="fas fa-chevron-right icon-transition"></i>
-                        </button>
-                        <div id="pt05ErrorProofingContent" class="accordion-content-sub">
-                            <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20Plata%20-%20PT.05%20-%20Performance.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <button type="button" class="accordion-button" data-target="pt150Content">
-                    <span>P.150</span>
-                    <i class="fas fa-chevron-right icon-transition"></i>
-                </button>
-                <div id="pt150Content" class="accordion-content">
-                    <div>
-                        <button type="button" class="accordion-button-sub" data-target="pt150PokaYokeContent">
-                            <span>Poka-Yoke</span>
-                            <i class="fas fa-chevron-right icon-transition"></i>
-                        </button>
-                        <div id="pt150PokaYokeContent" class="accordion-content-sub">
-                            <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Poka%20Yoke%20-%20Produto%20-%20P.150%20-%20Montagem%20do%20painel.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Produto</a>
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Processo</a>
-                        </div>
-                    </div>
-                    <div>
-                        <button type="button" class="accordion-button-sub" data-target="pt150ErrorProofingContent">
-                            <span>Error Proofing</span>
-                            <i class="fas fa-chevron-right icon-transition"></i>
-                        </button>
-                        <div id="pt150ErrorProofingContent" class="accordion-content-sub">
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
-                            <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20proofing%20Esta%C3%A7%C3%A3o%20-%20P.150.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <button type="button" class="accordion-button" data-target="pt190Content">
-                    <span>P.190</span>
-                    <i class="fas fa-chevron-right icon-transition"></i>
-                </button>
-                <div id="pt190Content" class="accordion-content">
-                    <div>
-                        <button type="button" class="accordion-button-sub" data-target="pt190PokaYokeContent">
-                            <span>Poka-Yoke</span>
-                            <i class="fas fa-chevron-right icon-transition"></i>
-                        </button>
-                        <div id="pt190PokaYokeContent" class="accordion-content-sub">
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Produto</a>
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Processo</a>
-                        </div>
-                    </div>
-                    <div>
-                        <button type="button" class="accordion-button-sub" data-target="pt190ErrorProofingContent">
-                            <span>Error Proofing</span>
-                            <i class="fas fa-chevron-right icon-transition"></i>
-                        </button>
-                        <div id="pt190ErrorProofingContent" class="accordion-content-sub">
-                            <a href="#" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
-                            <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20esta%C3%A7%C3%A3o%20P.190%20-%20Embalagem%20do%20Produto.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Botões que abrem os Modais -->
+            <div><button type="button" class="main-button" data-modal-target="#modal-pt10"><span>PT.10</span><i class="fas fa-arrow-up-right-from-square"></i></button></div>
+            <div><button type="button" class="main-button" data-modal-target="#modal-pt40"><span>PT.40</span><i class="fas fa-arrow-up-right-from-square"></i></button></div>
+            <div><button type="button" class="main-button" data-modal-target="#modal-pt05"><span>PT.05</span><i class="fas fa-arrow-up-right-from-square"></i></button></div>
+            <div><button type="button" class="main-button" data-modal-target="#modal-p150"><span>P.150</span><i class="fas fa-arrow-up-right-from-square"></i></button></div>
+            <div><button type="button" class="main-button" data-modal-target="#modal-p190"><span>P.190</span><i class="fas fa-arrow-up-right-from-square"></i></button></div>
         </main>
 
         <footer class="footer">
@@ -362,142 +320,190 @@
         </footer>
     </div>
 
+    <!-- Estrutura dos Modais -->
+    <!-- Modal PT.10 -->
+    <div id="modal-pt10" class="modal-overlay">
+        <div class="modal">
+            <header class="modal-header">
+                <h2 class="modal-title">PT.10</h2>
+                <button class="modal-close-btn" data-modal-close>&times;</button>
+            </header>
+            <section class="modal-body">
+                <div>
+                    <h3 class="modal-category-title">Error Proofing</h3>
+                    <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20planta%20-%20PT.10.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal PT.40 -->
+    <div id="modal-pt40" class="modal-overlay">
+        <div class="modal">
+            <header class="modal-header">
+                <h2 class="modal-title">PT.40</h2>
+                <button class="modal-close-btn" data-modal-close>&times;</button>
+            </header>
+            <section class="modal-body">
+                <div>
+                    <h3 class="modal-category-title">Error Proofing</h3>
+                    <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20Esta%C3%A7%C3%A3o%20PT.40.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <!-- Modal PT.05 -->
+    <div id="modal-pt05" class="modal-overlay">
+        <div class="modal">
+            <header class="modal-header">
+                <h2 class="modal-title">PT.05</h2>
+                <button class="modal-close-btn" data-modal-close>&times;</button>
+            </header>
+            <section class="modal-body">
+                <div>
+                    <h3 class="modal-category-title">Error Proofing</h3>
+                    <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20Plata%20-%20PT.05%20-%20Performance.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal P.150 -->
+    <div id="modal-p150" class="modal-overlay">
+        <div class="modal">
+            <header class="modal-header">
+                <h2 class="modal-title">P.150</h2>
+                <button class="modal-close-btn" data-modal-close>&times;</button>
+            </header>
+            <section class="modal-body">
+                <div>
+                    <h3 class="modal-category-title">Poka-Yoke</h3>
+                    <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Poka%20Yoke%20-%20Produto%20-%20P.150%20-%20Montagem%20do%20painel.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Produto</a>
+                    <a href="#" class="btn-custom" role="button">Processo</a>
+                </div>
+                <div>
+                    <h3 class="modal-category-title">Error Proofing</h3>
+                    <a href="#" class="btn-custom" role="button">Planta</a>
+                    <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20proofing%20Esta%C3%A7%C3%A3o%20-%20P.150.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Modal P.190 -->
+    <div id="modal-p190" class="modal-overlay">
+        <div class="modal">
+            <header class="modal-header">
+                <h2 class="modal-title">P.190</h2>
+                <button class="modal-close-btn" data-modal-close>&times;</button>
+            </header>
+            <section class="modal-body">
+                 <div>
+                    <h3 class="modal-category-title">Poka-Yoke</h3>
+                    <a href="#" class="btn-custom" role="button">Produto</a>
+                    <a href="#" class="btn-custom" role="button">Processo</a>
+                </div>
+                <div>
+                    <h3 class="modal-category-title">Error Proofing</h3>
+                    <a href="#" class="btn-custom" role="button">Planta</a>
+                    <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20esta%C3%A7%C3%A3o%20P.190%20-%20Embalagem%20do%20Produto.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <!-- Overlay de Carregamento -->
     <div id="loadingOverlay" class="loading-overlay">
         <img src="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/QC%20Gear.png"
              alt="Logo QC Carregando"
              class="loading-logo"
-             onerror="this.onerror=null; this.src='https://placehold.co/120x120/073763/FFFFFF?text=QC&font=inter';">
+             onerror="this.onerror=null; this.src='https://placehold.co/100x100/0d6efd/FFFFFF?text=QC&font=inter';">
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Seleciona todos os botões principais dos acordeões
-            const mainAccordionButtons = document.querySelectorAll('.accordion-button');
-            // Seleciona todos os botões de sub-acordeões
-            const subAccordionButtons = document.querySelectorAll('.accordion-button-sub');
-            // Seleciona o overlay de carregamento
+            const modalTriggers = document.querySelectorAll('[data-modal-target]');
+            const linkButtons = document.querySelectorAll('.btn-custom');
             const loadingOverlay = document.getElementById('loadingOverlay');
+            let openModal = null;
 
-            /**
-             * Alterna a visibilidade e o estado de um conteúdo de acordeão.
-             * Define uma altura máxima grande para garantir que todo o conteúdo seja visível.
-             * @param {HTMLElement} button - O botão que acionou o acordeão.
-             */
-            function toggleAccordion(button) {
-                const targetId = button.dataset.target;
-                const content = document.getElementById(targetId);
-                const icon = button.querySelector('i.fas');
-
-                if (content) {
-                    content.classList.toggle('open');
-
-                    if (content.classList.contains('open')) {
-                        content.style.maxHeight = '1000px'; // Valor suficientemente grande para exibir todo o conteúdo
-                        if (icon) icon.classList.add('rotate-90');
-                    } else {
-                        content.style.maxHeight = null; // Recolhe o conteúdo
-                        if (icon) icon.classList.remove('rotate-90');
-                    }
-                }
+            // Função para abrir um modal
+            function openModalHandler(modal) {
+                if (!modal) return;
+                modal.classList.add('visible');
+                document.body.style.overflow = 'hidden'; // Impede scroll do fundo
+                openModal = modal;
             }
 
-            // Adiciona listeners de clique aos botões principais dos acordeões
-            mainAccordionButtons.forEach(button => {
+            // Função para fechar o modal ativo
+            function closeModalHandler() {
+                if (!openModal) return;
+                openModal.classList.remove('visible');
+                document.body.style.overflow = '';
+                openModal = null;
+            }
+
+            // Adiciona gatilhos para abrir os modais
+            modalTriggers.forEach(button => {
                 button.addEventListener('click', () => {
-                    const targetId = button.dataset.target;
-                    const content = document.getElementById(targetId);
+                    const modal = document.querySelector(button.dataset.modalTarget);
+                    openModalHandler(modal);
+                });
+            });
 
-                    // Fecha todos os outros acordeões principais se estiverem abertos
-                    mainAccordionButtons.forEach(otherButton => {
-                        if (otherButton !== button) {
-                            const otherContentId = otherButton.dataset.target;
-                            const otherContent = document.getElementById(otherContentId);
-                            const otherIcon = otherButton.querySelector('i.fas');
-                            if (otherContent && otherContent.classList.contains('open')) {
-                                otherContent.classList.remove('open');
-                                otherContent.style.maxHeight = null;
-                                if (otherIcon) otherIcon.classList.remove('rotate-90');
-                            }
-                        }
-                    });
-
-                    // Alterna o acordeão principal clicado
-                    toggleAccordion(button);
-
-                    // Garante que todos os sub-acordeões dentro do acordeão principal aberto estejam fechados
-                    if (content && content.classList.contains('open')) {
-                        const subButtonsInMain = content.querySelectorAll('.accordion-button-sub');
-                        subButtonsInMain.forEach(subButton => {
-                            const subContentId = subButton.dataset.target;
-                            const subContent = document.getElementById(subContentId);
-                            const subIcon = subButton.querySelector('i.fas');
-                            if (subContent && subContent.classList.contains('open')) {
-                                subContent.classList.remove('open');
-                                subContent.style.maxHeight = null;
-                                if (subIcon) subIcon.classList.remove('rotate-90');
-                            }
-                        });
+            // Adiciona gatilhos para fechar os modais
+            document.querySelectorAll('[data-modal-close], .modal-overlay').forEach(element => {
+                element.addEventListener('click', (event) => {
+                    // Se o clique foi no overlay (fundo), mas não no conteúdo do modal
+                    if (event.target === element) {
+                        closeModalHandler();
                     }
                 });
             });
 
-            // Adiciona listeners de clique aos botões de sub-acordeão
-            subAccordionButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    // Fecha outros sub-acordeões dentro do mesmo pai se estiverem abertos
-                    const parentContent = button.closest('.accordion-content');
-                    if (parentContent) {
-                        const otherSubButtons = parentContent.querySelectorAll('.accordion-button-sub');
-                        otherSubButtons.forEach(otherButton => {
-                            if (otherButton !== button) {
-                                const otherSubContentId = otherButton.dataset.target;
-                                const otherSubContent = document.getElementById(otherSubContentId);
-                                const otherSubIcon = otherButton.querySelector('i.fas');
-                                if (otherSubContent && otherSubContent.classList.contains('open')) {
-                                    otherSubContent.classList.remove('open');
-                                    otherSubContent.style.maxHeight = null;
-                                    if (otherSubIcon) otherSubIcon.classList.remove('rotate-90');
-                                }
-                            }
-                        });
-                    }
-                    
-                    // Alterna o sub-acordeão clicado
-                    toggleAccordion(button);
-                });
+            // Fechar modal com a tecla 'Escape'
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && openModal) {
+                    closeModalHandler();
+                }
             });
 
-            // Lida com botões de link personalizados (mostra overlay de carregamento antes de redirecionar)
-            const linkButtons = document.querySelectorAll('.btn-custom');
+            // Lógica para o overlay de carregamento ao clicar em um link
             linkButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
                     const url = button.getAttribute('href');
                     if (url && url !== "#") {
-                        event.preventDefault(); // Previne o comportamento padrão do link
-
-                        // Mostra o overlay de carregamento
+                        event.preventDefault();
                         loadingOverlay.classList.add('visible');
-
-                        // Redireciona após 2 segundos (2000 ms)
-                        // A tela de carregamento permanecerá visível até que a nova página seja carregada ou o usuário retorne.
+                        // Um pequeno atraso para o usuário perceber a animação
                         setTimeout(() => {
-                            window.location.href = url;
-                        }, 2000); // 2 segundos de atraso
+                            window.open(url, '_blank');
+                        }, 500); 
                     } else if (url === "#") {
-                        event.preventDefault(); // Previne o comportamento padrão do link
-                        console.warn('Link não definido para o botão:', button.textContent.trim());
+                        event.preventDefault();
+                        // Alerta visual customizado (opcional, pode ser um toast)
+                        button.style.backgroundColor = '#ffcdd2';
+                        button.textContent = 'Link Indisponível';
+                        setTimeout(() => {
+                            button.style.backgroundColor = '';
+                            // Repõe o texto original, se necessário. Este é um exemplo.
+                            // Requer uma lógica mais robusta para guardar o estado inicial do texto.
+                            window.location.reload(); // Recarrega para restaurar o estado visual
+                        }, 1500);
+                        console.warn('Link não definido:', button.textContent.trim());
                     }
                 });
             });
 
-            // Oculta o overlay de carregamento quando a página é carregada ou quando o usuário retorna (do histórico)
-            window.addEventListener('pageshow', function (event) {
-                // Se a página foi carregada do cache de retrocesso/avanço (bfcache), o evento persisted é true.
-                // Em ambos os casos (carregamento inicial ou retorno), queremos esconder o overlay.
-                loadingOverlay.classList.remove('visible');
+            // Esconde o overlay de carregamento quando o usuário volta para a página
+            window.addEventListener('pageshow', function () {
+                if (loadingOverlay.classList.contains('visible')) {
+                    loadingOverlay.classList.remove('visible');
+                }
             });
         });
     </script>
-
 </body>
 </html>
