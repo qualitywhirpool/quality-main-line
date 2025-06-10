@@ -24,7 +24,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(170deg, #f0f7ff 0%, #e6f0ff 100%);
+            background-color: #f0f7ff; /* Cor de fundo base */
             margin: 0;
             padding: 0;
             height: 100vh;
@@ -33,7 +33,67 @@
             align-items: center;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            overflow: hidden; /* Previne scroll da página inteira */
         }
+
+        /* --- Início: Estilos do Fundo Animado --- */
+        .wave-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .wave-background .wave {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #4973ff;
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.2);
+            transition: 0.5s;
+        }
+
+        .wave-background .wave span {
+            content: "";
+            position: absolute;
+            width: 325vh;
+            height: 325vh;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -75%);
+            background: #fff; /* Cor base das ondas: branco */
+        }
+
+        .wave-background .wave span:nth-child(1) {
+            border-radius: 45%;
+            background: rgba(255, 255, 255, 0.8); /* Onda 1: Branco com opacidade */
+            animation: animate 5s linear infinite;
+        }
+
+        .wave-background .wave span:nth-child(2) {
+            border-radius: 40%;
+            background: rgba(255, 255, 255, 0.5); /* Onda 2: Branco mais transparente */
+            animation: animate 10s linear infinite;
+        }
+        .wave-background .wave span:nth-child(3) {
+            border-radius: 42.5%;
+            background: rgba(255, 255, 255, 0.3); /* Onda 3: Branco ainda mais transparente */
+            animation: animate 15s linear infinite;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: translate(-50%, -75%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -75%) rotate(360deg);
+            }
+        }
+        /* --- Fim: Estilos do Fundo Animado --- */
+
 
         .app-container {
             max-width: 480px;
@@ -44,6 +104,8 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            position: relative; /* Garante que o container fique acima do fundo */
+            z-index: 1;
         }
 
         @media (min-width: 500px) {
@@ -102,10 +164,6 @@
             flex-shrink: 0;
         }
 
-        /* * ==============================================
-         * Componentes de Botão e Links
-         * ==============================================
-         */
         .main-button {
             background-color: var(--primary-color);
             color: white;
@@ -152,17 +210,13 @@
             transform: translateY(-1px);
         }
 
-        /* * ==============================================
-         * Sistema de Modal
-         * ==============================================
-         */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(33, 37, 41, 0.5); /* Fundo mais escuro */
+            background-color: rgba(33, 37, 41, 0.5); 
             backdrop-filter: blur(5px);
             display: flex;
             justify-content: center;
@@ -232,7 +286,7 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 1.25rem; /* Espaçamento entre categorias */
+            gap: 1.25rem; 
         }
 
         .modal-category-title {
@@ -244,10 +298,6 @@
             margin-bottom: 1rem;
         }
 
-        /* * ==============================================
-         * Animações de Entrada
-         * ==============================================
-         */
         @keyframes slide-up-fade-in {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
@@ -256,17 +306,14 @@
             animation: slide-up-fade-in 0.6s ease-out forwards;
             opacity: 0;
         }
-        /* Efeito cascata na animação */
         main > div:nth-child(1) { animation-delay: 0.1s; }
         main > div:nth-child(2) { animation-delay: 0.2s; }
         main > div:nth-child(3) { animation-delay: 0.3s; }
         main > div:nth-child(4) { animation-delay: 0.4s; }
         main > div:nth-child(5) { animation-delay: 0.5s; }
+        main > div:nth-child(6) { animation-delay: 0.6s; }
 
-        /* * ==============================================
-         * Overlay de Carregamento
-         * ==============================================
-         */
+
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -296,6 +343,15 @@
     </style>
 </head>
 <body>
+    <!-- Elemento do Fundo Animado -->
+    <div class="wave-background">
+        <div class="wave">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
     <!-- Container principal do App -->
     <div class="app-container">
         <header class="header">
@@ -303,12 +359,12 @@
                  alt="Logo QC"
                  class="header-logo"
                  onerror="this.onerror=null; this.src='https://placehold.co/50x50/0d6efd/FFFFFF?text=QC&font=inter';">
-            <span class="header-title">Quality Main Line</span>
+            <span class="header-title">Quality Main Line - RAC</span>
         </header>
 
         <main>
-            <!-- Botões que abrem os Modais -->
             <div><button type="button" class="main-button" data-modal-target="#modal-pt10"><span>PT.10</span><i class="fas fa-arrow-up-right-from-square"></i></button></div>
+            <div><button type="button" class="main-button" data-modal-target="#modal-pt20-30"><span>PT.20/30</span><i class="fas fa-arrow-up-right-from-square"></i></button></div>
             <div><button type="button" class="main-button" data-modal-target="#modal-pt40"><span>PT.40</span><i class="fas fa-arrow-up-right-from-square"></i></button></div>
             <div><button type="button" class="main-button" data-modal-target="#modal-pt05"><span>PT.05</span><i class="fas fa-arrow-up-right-from-square"></i></button></div>
             <div><button type="button" class="main-button" data-modal-target="#modal-p150"><span>P.150</span><i class="fas fa-arrow-up-right-from-square"></i></button></div>
@@ -321,7 +377,6 @@
     </div>
 
     <!-- Estrutura dos Modais -->
-    <!-- Modal PT.10 -->
     <div id="modal-pt10" class="modal-overlay">
         <div class="modal">
             <header class="modal-header">
@@ -337,7 +392,20 @@
         </div>
     </div>
 
-    <!-- Modal PT.40 -->
+    <div id="modal-pt20-30" class="modal-overlay">
+        <div class="modal">
+            <header class="modal-header">
+                <h2 class="modal-title">PT.20/30</h2>
+                <button class="modal-close-btn" data-modal-close>&times;</button>
+            </header>
+            <section class="modal-body">
+                <div>
+                    <h3 class="modal-category-title">Error Proofing</h3>
+                    <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/PT.20-30%20Error%20Proofing%20Planta.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Planta</a>
+                </div>
+            </section>
+        </div>
+    </div>     
     <div id="modal-pt40" class="modal-overlay">
         <div class="modal">
             <header class="modal-header">
@@ -353,7 +421,6 @@
         </div>
     </div>
     
-    <!-- Modal PT.05 -->
     <div id="modal-pt05" class="modal-overlay">
         <div class="modal">
             <header class="modal-header">
@@ -369,7 +436,6 @@
         </div>
     </div>
 
-    <!-- Modal P.150 -->
     <div id="modal-p150" class="modal-overlay">
         <div class="modal">
             <header class="modal-header">
@@ -391,7 +457,6 @@
         </div>
     </div>
 
-    <!-- Modal P.190 -->
     <div id="modal-p190" class="modal-overlay">
         <div class="modal">
             <header class="modal-header">
@@ -403,11 +468,11 @@
                     <h3 class="modal-category-title">Poka-Yoke</h3>
                     <a href="#" class="btn-custom" role="button">Produto</a>
                     <a href="#" class="btn-custom" role="button">Processo</a>
-                </div>
+                 </div>
                 <div>
                     <h3 class="modal-category-title">Error Proofing</h3>
                     <a href="#" class="btn-custom" role="button">Planta</a>
-                    <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20esta%C3%A7%C3%A3o%20P.190%20-%20Embalagem%20do%20Produto.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
+                    <a href="https://raw.githubusercontent.com/higorbritowh/qml/refs/heads/main/Error%20Proofing%20-%20Esta%C3%A7%C3%A3o%20P.190%20-%20Embalagem%20do%20Produto.jpg" class="btn-custom" role="button" target="_blank" rel="noopener noreferrer">Estação</a>
                 </div>
             </section>
         </div>
@@ -429,15 +494,13 @@
             const loadingOverlay = document.getElementById('loadingOverlay');
             let openModal = null;
 
-            // Função para abrir um modal
             function openModalHandler(modal) {
                 if (!modal) return;
                 modal.classList.add('visible');
-                document.body.style.overflow = 'hidden'; // Impede scroll do fundo
+                document.body.style.overflow = 'hidden'; 
                 openModal = modal;
             }
 
-            // Função para fechar o modal ativo
             function closeModalHandler() {
                 if (!openModal) return;
                 openModal.classList.remove('visible');
@@ -445,7 +508,6 @@
                 openModal = null;
             }
 
-            // Adiciona gatilhos para abrir os modais
             modalTriggers.forEach(button => {
                 button.addEventListener('click', () => {
                     const modal = document.querySelector(button.dataset.modalTarget);
@@ -453,51 +515,43 @@
                 });
             });
 
-            // Adiciona gatilhos para fechar os modais
             document.querySelectorAll('[data-modal-close], .modal-overlay').forEach(element => {
                 element.addEventListener('click', (event) => {
-                    // Se o clique foi no overlay (fundo), mas não no conteúdo do modal
                     if (event.target === element) {
                         closeModalHandler();
                     }
                 });
             });
 
-            // Fechar modal com a tecla 'Escape'
             document.addEventListener('keydown', (event) => {
                 if (event.key === 'Escape' && openModal) {
                     closeModalHandler();
                 }
             });
 
-            // Lógica para o overlay de carregamento ao clicar em um link
             linkButtons.forEach(button => {
                 button.addEventListener('click', (event) => {
                     const url = button.getAttribute('href');
                     if (url && url !== "#") {
                         event.preventDefault();
                         loadingOverlay.classList.add('visible');
-                        // Um pequeno atraso para o usuário perceber a animação
                         setTimeout(() => {
                             window.open(url, '_blank');
                         }, 500); 
                     } else if (url === "#") {
                         event.preventDefault();
-                        // Alerta visual customizado (opcional, pode ser um toast)
+                        const originalText = button.textContent;
                         button.style.backgroundColor = '#ffcdd2';
                         button.textContent = 'Link Indisponível';
                         setTimeout(() => {
                             button.style.backgroundColor = '';
-                            // Repõe o texto original, se necessário. Este é um exemplo.
-                            // Requer uma lógica mais robusta para guardar o estado inicial do texto.
-                            window.location.reload(); // Recarrega para restaurar o estado visual
+                            button.textContent = originalText;
                         }, 1500);
                         console.warn('Link não definido:', button.textContent.trim());
                     }
                 });
             });
 
-            // Esconde o overlay de carregamento quando o usuário volta para a página
             window.addEventListener('pageshow', function () {
                 if (loadingOverlay.classList.contains('visible')) {
                     loadingOverlay.classList.remove('visible');
