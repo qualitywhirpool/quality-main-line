@@ -14,7 +14,7 @@
             --container-bg: #ffffff;
             --text-primary: #212529;
             --text-secondary: #6c757d;
-            --border-color: #e9ecef; /* Borda mais suave */
+            --border-color: #e9ecef;
             --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
             --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.05);
             --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.05);
@@ -24,7 +24,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f7ff; /* Cor de fundo base */
+            background-color: #f0f7ff;
             margin: 0;
             padding: 0;
             height: 100vh;
@@ -33,10 +33,9 @@
             align-items: center;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            overflow: hidden; /* Previne scroll da página inteira */
+            overflow: hidden;
         }
 
-        /* --- Início: Estilos do Fundo Animado --- */
         .wave-background {
             position: absolute;
             top: 0;
@@ -64,23 +63,23 @@
             top: 0;
             left: 50%;
             transform: translate(-50%, -75%);
-            background: #fff; /* Cor base das ondas: branco */
+            background: #fff;
         }
 
         .wave-background .wave span:nth-child(1) {
             border-radius: 45%;
-            background: rgba(255, 255, 255, 0.8); /* Onda 1: Branco com opacidade */
+            background: rgba(255, 255, 255, 0.8);
             animation: animate 5s linear infinite;
         }
 
         .wave-background .wave span:nth-child(2) {
             border-radius: 40%;
-            background: rgba(255, 255, 255, 0.5); /* Onda 2: Branco mais transparente */
+            background: rgba(255, 255, 255, 0.5);
             animation: animate 10s linear infinite;
         }
         .wave-background .wave span:nth-child(3) {
             border-radius: 42.5%;
-            background: rgba(255, 255, 255, 0.3); /* Onda 3: Branco ainda mais transparente */
+            background: rgba(255, 255, 255, 0.3);
             animation: animate 15s linear infinite;
         }
 
@@ -92,19 +91,16 @@
                 transform: translate(-50%, -75%) rotate(360deg);
             }
         }
-        /* --- Fim: Estilos do Fundo Animado --- */
-
-
         .app-container {
             max-width: 480px;
             width: 100%;
-            height: 100dvh; /* Altura dinâmica do viewport */
+            height: 100dvh;
             margin: 0 auto;
             background-color: var(--container-bg);
             display: flex;
             flex-direction: column;
             overflow: hidden;
-            position: relative; /* Garante que o container fique acima do fundo */
+            position: relative;
             z-index: 1;
         }
 
